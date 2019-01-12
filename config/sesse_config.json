@@ -1,0 +1,6 @@
+{
+	"playerlist":["Carlsen", "Tari", "Christiansen", "Aronian", "Kariakin", "Anand"],
+	"update_interval":"10",
+	"score_url":"http://analysis.sesse.net/analysis.pl",
+	"score_scale":"255"
+}
