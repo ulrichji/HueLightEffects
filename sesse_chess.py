@@ -7,20 +7,6 @@ from threading import Thread
 
 program_running = True
 
-def getConfig(path="config/sesse_config.json"):
-	try:
-		f = open(path, "rb")
-		data = f.read()
-		json_data = json.loads(data.decode())
-		f.close()
-		
-		return json_data
-		
-	except Expection as e:
-		print("Failed to read configuration file at "+str(path)+": "+str(e))
-	
-	return None
-
 def getScoreFromPosition(page_json, score_scale):
 	#First, look at result
 	if('position' in page_json and 'result' in page_json['position']):
@@ -141,7 +127,7 @@ def lightLoop():
 	if(b is None):
 		print("Unable to connect to HUE bridge")
 		return None
-	config = getConfig()
+	config = util.getConfig("config/sesse_config.json")
 	if(config is None):
 		print("Unable to load config")
 		return config
@@ -167,7 +153,7 @@ def lightLoop():
 
 def main():
 	global program_running
-
+	
 	thread = Thread(target=lightLoop, args = ())
 	thread.start()
 	
